@@ -2,27 +2,22 @@ def init():
     print("Bonjours !!")
     print("Bienvenue sur mon programme de Convertion")
     print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
-    print("1 : décimal en binaire")
-    print("2 : décimal en hexadécimal")
-    print("3 : binaire en décimal")
-    print("4 : binaire en hexadécimal")
-    print("5 : hexadécimal en décimal")
-    print("6 : hexadécimal en binaire")
+    print("1 : décimal")
+    print("2 : binaire")
+    print("3 : hexadécimal")
     print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
-    choix = int(input("Quel est ton choix ? "))
+    choix = int(input("Quel est ton unité de départ ? "))
     number = input("Quel est ton chiffre ? ")
+    print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
     if choix == 1:
-        print("--> ", deci_to_bin(number))
+        print("binaire --> ", deci_to_bin(number))
+        print("hexadécimal --> ", bin_to_hex(deci_to_bin(number)))
     elif choix == 2:
-        print("--> ", bin_to_hex(deci_to_bin(number)))
+        print("décimal --> ", bin_to_deci(number))
+        print("héxadécimal --> ", bin_to_hex(number))
     elif choix == 3:
-        print("--> ", bin_to_deci(number))
-    elif choix == 4:
-        print("--> ", bin_to_hex(number))
-    elif choix == 5:
-        print("--> ", hex_to_deci(number))
-    elif choix == 6:
-        print("--> ", deci_to_bin(hex_to_deci(number)))
+        print("décimal --> ", hex_to_deci(number))
+        print("binaire --> ", deci_to_bin(hex_to_deci(number)))
     else:
         print("Erreur dans le choix !")
         print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
@@ -52,7 +47,7 @@ def deci_to_bin(number):
     # initialisation de la liste
     number = int(number)
     liste = []
-    # je convertie comme on convertie sur une feuille donc avec les puissances de 2
+    # je convertie comme on convertie sur une feuille donc avec les puissances sur le chiffre 2
     puissance = 1
     while number > 2 ** puissance:
         puissance += 1
@@ -69,6 +64,7 @@ def deci_to_bin(number):
         elif number < 2**puissance:
             liste.append(0)
             puissance -= 1
+    # convertion de la liste en chaine de caractère
     Liste = ''.join(str(elem) for elem in liste)
     return Liste
 
