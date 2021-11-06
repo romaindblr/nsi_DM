@@ -112,7 +112,6 @@ def bin_to_hex(number):
         l += 1
     # changer ce qui est au dessus de 9 en lettres
     h = 0
-    Convertion = liste_convertion
     while h != len(Convertion):
         if len(Convertion[h]) > 1:
             w = Convertion[h][1]
