@@ -1,3 +1,20 @@
+def init():
+    print("Bonjours !!")
+    print("Bienvenue sur mon programme de Convertion")
+    print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
+    print("1 : binaire en décimal")
+    print("2 : décimal en binaire")
+    print("3 : binaire en hexadécimal")
+    print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
+    choix = int(input("Quel est ton choix ? "))
+    number = int(input("Quel est ton chiffre ? "))
+    if choix == 1:
+        bin_to_deci(number)
+    elif choix == 2:
+        deci_to_bin(number)
+    else:
+        bin_to_hex(number)
+
 def bin_to_deci(number):
     # initalisation de la liste
     number = str(number)
@@ -98,10 +115,5 @@ def bin_to_hex(number):
     CONVERTION = ''.join(str(elem) for elem in Convertion)
     print("-->", CONVERTION)
 
-a = int(input("binaire en decimal : "))
-bin_to_deci(a)
-b = int(input("decimal en binaire : "))
-deci_to_bin(b)
-c = int(input("binaire en hexadecimal : "))
-bin_to_hex(c)
+init()
 
