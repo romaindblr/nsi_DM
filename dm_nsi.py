@@ -15,7 +15,7 @@ def bin_to_deci(number):
         else:
             max -= 1
             place += 1
-    print(convertion)
+    print("-->",convertion)
 
 def deci_to_bin(number):
     # initialisation de la liste
@@ -38,7 +38,8 @@ def deci_to_bin(number):
         elif number < 2**puissance:
             liste.append(0)
             puissance -= 1
-    print(liste)
+    Liste = ''.join(str(elem) for elem in liste)
+    print("-->",Liste)
 
 def bin_to_hex(number):
     # initialisation de la liste
@@ -83,14 +84,24 @@ def bin_to_hex(number):
     while h != len(Convertion):
         if len(Convertion[h]) > 1:
             w = Convertion[h][1]
-            list_lettres = [['a'],['b'],['c'],['d'],['e'],['f']]
+            list_lettres = ['a','b','c','d','e','f']
             Convertion[h] = list_lettres[w]
             h += 1
         else:
             h += 1
-    print(Convertion)
+    # La liste de liste redevien une liste normal
+    Flat_Convertion = []
+    for item in Convertion:
+        Flat_Convertion += item
+    Convertion = Flat_Convertion
+    # Convertion de la liste en chaine de caractère
+    CONVERTION = ''.join(str(elem) for elem in Convertion)
+    print("-->", CONVERTION)
 
-bin_to_deci(10111010100011100110)
-deci_to_bin(764134)
-bin_to_hex(10111010100011100110)
+a = int(input("binaire en decimal : "))
+bin_to_deci(a)
+b = int(input("decimal en binaire : "))
+deci_to_bin(b)
+c = int(input("binaire en hexadecimal : "))
+bin_to_hex(c)
 
