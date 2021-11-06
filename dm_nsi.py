@@ -2,18 +2,32 @@ def init():
     print("Bonjours !!")
     print("Bienvenue sur mon programme de Convertion")
     print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
-    print("1 : binaire en décimal")
-    print("2 : décimal en binaire")
-    print("3 : binaire en hexadécimal")
+    print("1 : décimal en binaire")
+    print("2 : décimal en hexadécimal")
+    print("3 : binaire en décimal")
+    print("4 : binaire en hexadécimal")
+    print("5 : hexadécimal en décimal")
+    print("6 : hexadécimal en binaire")
     print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
     choix = int(input("Quel est ton choix ? "))
-    number = int(input("Quel est ton chiffre ? "))
+    number = input("Quel est ton chiffre ? ")
     if choix == 1:
-        bin_to_deci(number)
+        print("--> ", deci_to_bin(number))
     elif choix == 2:
-        deci_to_bin(number)
+        print("--> ", bin_to_hex(deci_to_bin(number)))
+    elif choix == 3:
+        print("--> ", bin_to_deci(number))
+    elif choix == 4:
+        print("--> ", bin_to_hex(number))
+    elif choix == 5:
+        print("--> ", hex_to_deci(number))
+    elif choix == 6:
+        print("--> ", deci_to_bin(hex_to_deci(number)))
     else:
-        bin_to_hex(number)
+        print("Erreur dans le choix !")
+        print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
+        print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
+        init()
 
 def bin_to_deci(number):
     # initalisation de la liste
@@ -32,7 +46,7 @@ def bin_to_deci(number):
         else:
             max -= 1
             place += 1
-    print("-->",convertion)
+    return convertion
 
 def deci_to_bin(number):
     # initialisation de la liste
@@ -56,7 +70,7 @@ def deci_to_bin(number):
             liste.append(0)
             puissance -= 1
     Liste = ''.join(str(elem) for elem in liste)
-    print("-->",Liste)
+    return Liste
 
 def bin_to_hex(number):
     # initialisation de la liste
@@ -113,7 +127,49 @@ def bin_to_hex(number):
     Convertion = Flat_Convertion
     # Convertion de la liste en chaine de caractère
     CONVERTION = ''.join(str(elem) for elem in Convertion)
-    print("-->", CONVERTION)
+    return CONVERTION
+
+def hex_to_deci(number):
+    # initialisation de la liste
+    number = str(number)
+    liste = list(number)
+    # regarder si il y a des lettres est les convertires en chiffres
+    h = 0
+    t = 0
+    liste_changement = ["a","10","b","11","c","12","d","13","e","14","f","15",]
+    while h <= len(liste):
+        while t <= 11:
+            if liste[h] == liste_changement[t]:
+                t += 1
+                liste[h] = liste_changement[t]
+                h += 1
+                t = 12
+                if t == 12:
+                    h = len(liste)+1
+            elif t == 10:
+                t = 0
+                h += 1
+            else:
+                t += 2
+                if t == 10 and len(liste) == 1:
+                    t += 1
+                    liste[h] = liste_changement[t]
+                    t = 12
+                    h = len(liste) + 1
+    # convertion
+    liste_int = list(map(int, liste))
+    place = 0
+    max = len(liste) - 1
+    convertion = 0
+    Convertion = 0
+    while len(liste_int) != place:
+        mult = 16 ** max
+        max -= 1
+        convertion = mult * liste_int[place]
+        Convertion = Convertion + convertion
+        place += 1
+    return Convertion
+
 
 init()
 
