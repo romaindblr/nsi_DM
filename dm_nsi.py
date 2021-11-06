@@ -40,9 +40,9 @@ def bin_to_deci(number):
     while len(liste) != place:
         if int(liste[place]) == 1:
             mult = 2**max
+            convertion = mult + convertion
             max -= 1
             place += 1
-            convertion = mult + convertion
         else:
             max -= 1
             place += 1
@@ -52,7 +52,7 @@ def deci_to_bin(number):
     # initialisation de la liste
     number = int(number)
     liste = []
-    # je convertie comme on convertie sur une feuille donc avec les puissances de 2
+    # je convertie comme on convertie sur une feuille donc avec les puissances sur le chiffre 2
     puissance = 1
     while number > 2 ** puissance:
         puissance += 1
@@ -112,6 +112,7 @@ def bin_to_hex(number):
         l += 1
     # changer ce qui est au dessus de 9 en lettres
     h = 0
+    Convertion = liste_convertion
     while h != len(Convertion):
         if len(Convertion[h]) > 1:
             w = Convertion[h][1]
@@ -137,38 +138,27 @@ def hex_to_deci(number):
     h = 0
     t = 0
     liste_changement = ["a","10","b","11","c","12","d","13","e","14","f","15",]
-    while h <= len(liste):
-        while t <= 11:
-            if liste[h] == liste_changement[t]:
-                t += 1
-                liste[h] = liste_changement[t]
-                h += 1
-                t = 12
-                if t == 12:
-                    h = len(liste)+1
-            elif t == 10:
-                t = 0
-                h += 1
-            else:
-                t += 2
-                if t == 10 and len(liste) == 1:
-                    t += 1
-                    liste[h] = liste_changement[t]
-                    t = 12
-                    h = len(liste) + 1
-    # multiplication des chiffres par de puissance de 16
+    while h < len(liste):
+        if liste[h] == liste_changement[t]:
+            liste[h] = liste_changement[t+1]
+            t = 0
+            h += 1
+        elif t == 10:
+            t = 0
+            h += 1
+        else:
+            t += 2
+    # multiplication des chiffre par des puissances de 16
     liste_int = list(map(int, liste))
     place = 0
     max = len(liste) - 1
     convertion = 0
-    Convertion = 0
     while len(liste_int) != place:
         mult = 16 ** max
+        convertion = (mult * liste_int[place]) + convertion
         max -= 1
-        convertion = mult * liste_int[place]
-        Convertion = Convertion + convertion
         place += 1
-    return Convertion
+    return convertion
 
 
 init()
