@@ -52,7 +52,7 @@ def deci_to_bin(number):
     # initialisation de la liste
     number = int(number)
     liste = []
-    # je convertie comme on convertie sur une feuille donc avec les puissances sur le chiffre 2
+    # je convertie comme on convertie sur une feuille donc avec les puissances de 2
     puissance = 1
     while number > 2 ** puissance:
         puissance += 1
