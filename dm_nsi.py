@@ -1,12 +1,12 @@
 def init():
-    print("Bonjours !!")
-    print("Bienvenue sur mon programme de Convertion")
+    print("Bonjour !!")
+    print("Bienvenue sur mon programme de Conversion")
     print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
     print("1 : décimal")
     print("2 : binaire")
     print("3 : hexadécimal")
     print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
-    choix = int(input("Quel est ton unité de départ ? "))
+    choix = int(input("Quelle est ton unité de départ ? "))
     number = input("Quel est ton chiffre ? ")
     print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
     if choix == 1:
@@ -14,7 +14,7 @@ def init():
         print("hexadécimal --> ", bin_to_hex(deci_to_bin(number)))
     elif choix == 2:
         print("décimal --> ", bin_to_deci(number))
-        print("héxadécimal --> ", bin_to_hex(number))
+        print("hexadécimal --> ", bin_to_hex(number))
     elif choix == 3:
         print("décimal --> ", hex_to_deci(number))
         print("binaire --> ", deci_to_bin(hex_to_deci(number)))
@@ -28,26 +28,26 @@ def bin_to_deci(number):
     # initalisation de la liste
     number = str(number)
     liste = list(number)
-    # convertion
+    # conversion
     place = 0
     max = len(liste)-1
-    convertion = 0
+    conversion = 0
     while len(liste) != place:
         if int(liste[place]) == 1:
             mult = 2**max
-            convertion = mult + convertion
+            conversion = mult + conversion
             max -= 1
             place += 1
         else:
             max -= 1
             place += 1
-    return convertion
+    return conversion
 
 def deci_to_bin(number):
     # initialisation de la liste
     number = int(number)
     liste = []
-    # je convertie comme on convertie sur une feuille donc avec les puissances sur le chiffre 2
+    # je convertis comme on convertit sur une feuille donc avec les puissances sur le chiffre 2
     puissance = 1
     while number > 2 ** puissance:
         puissance += 1
@@ -64,7 +64,7 @@ def deci_to_bin(number):
         elif number < 2**puissance:
             liste.append(0)
             puissance -= 1
-    # convertion de la liste en chaine de caractère
+    # conversion de la liste en chaine de caractères
     Liste = ''.join(str(elem) for elem in liste)
     return Liste
 
@@ -76,60 +76,60 @@ def bin_to_hex(number):
     # ajout de 0 pour avoir un multiple de 4
     while len(liste)%4 != 0:
         liste.insert(0, 0)
-    # divisition en groupe de 4 bit
+    # division en groupes de 4 bits
     debut = 0
     fin = 4
-    liste_convertion = []
+    liste_conversion = []
     while fin <= len(liste):
         liste_liste = liste[debut:fin]
-        liste_convertion.append(liste_liste)
+        liste_conversion.append(liste_liste)
         debut += 4
         fin += 4
-    # convertion de chaque groupes de 4 bit en décimal
+    # conversion de chaque groupe de 4 bits en décimal
     l = 0
-    Convertion = []
-    while l != len(liste_convertion):
+    Conversion = []
+    while l != len(liste_conversion):
         place = 0
-        max = len(liste_convertion[l]) - 1
-        convertion = 0
-        while len(liste_convertion[l]) != place:
-            if int(liste_convertion[l][place]) == 1:
+        max = len(liste_conversion[l]) - 1
+        conversion = 0
+        while len(liste_conversion[l]) != place:
+            if int(liste_conversion[l][place]) == 1:
                 mult = 2 ** max
                 max -= 1
                 place += 1
-                convertion = mult + convertion
+                conversion = mult + conversion
             else:
                 max -= 1
                 place += 1
-        convertion = str(convertion)
-        L = list(convertion)
+        conversion = str(conversion)
+        L = list(conversion)
         L = list(map(int, L))
-        Convertion.append(L)
+        Conversion.append(L)
         l += 1
-    # changer ce qui est au dessus de 9 en lettres
+    # changer ce qui est au-dessus de 9 en lettres
     h = 0
-    while h != len(Convertion):
-        if len(Convertion[h]) > 1:
-            w = Convertion[h][1]
+    while h != len(Conversion):
+        if len(Conversion[h]) > 1:
+            w = Conversion[h][1]
             list_lettres = ['a','b','c','d','e','f']
-            Convertion[h] = list_lettres[w]
+            Conversion[h] = list_lettres[w]
             h += 1
         else:
             h += 1
-    # La liste de liste redevien une liste normal
-    Flat_Convertion = []
-    for item in Convertion:
-        Flat_Convertion += item
-    Convertion = Flat_Convertion
-    # Convertion de la liste en chaine de caractère
-    CONVERTION = ''.join(str(elem) for elem in Convertion)
-    return CONVERTION
+    # La liste de liste redevient une liste normale
+    Flat_Conversion = []
+    for item in Conversion:
+        Flat_Conversion += item
+    Conversion = Flat_Conversion
+    # Conversion de la liste en chaine de caractères
+    CONVERSION = ''.join(str(elem) for elem in Conversion)
+    return CONVERSION
 
 def hex_to_deci(number):
     # initialisation de la liste
     number = str(number)
     liste = list(number)
-    # regarder si il y a des lettres est les convertires en chiffres
+    # regarder si il y a des lettres est les convertir en chiffres
     h = 0
     t = 0
     liste_changement = ["a","10","b","11","c","12","d","13","e","14","f","15",]
@@ -143,17 +143,17 @@ def hex_to_deci(number):
             h += 1
         else:
             t += 2
-    # multiplication des chiffre par des puissances de 16
+    # multiplication des chiffres par des puissances de 16
     liste_int = list(map(int, liste))
     place = 0
     max = len(liste) - 1
-    convertion = 0
+    conversion = 0
     while len(liste_int) != place:
         mult = 16 ** max
-        convertion = (mult * liste_int[place]) + convertion
+        conversion = (mult * liste_int[place]) + conversion
         max -= 1
         place += 1
-    return convertion
+    return conversion
 
 
 init()
